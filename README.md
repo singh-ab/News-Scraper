@@ -18,7 +18,8 @@ Hacker News Scraper is a Node.js application that scrapes the latest stories fro
 
 ## Note
 
-The scraper is currently set to scrape the first 10 stories from the Hacker News website. This can be changed by modifying the `storyIds.slice(0, 10)` line in the `server/utils/grabUtil.js` file.
+- I've used 'UTC' timezone for the database. I recommend using 'UTC' timezone for the database as well or at least ensure there isn't a timezone mismatch between the server and the database.
+- The scraper is currently set to scrape the first 10 stories from the Hacker News website. This can be changed by modifying the `storyIds.slice(0, 10)` line in the `server/utils/grabUtil.js` file.
 
 ## Features
 
@@ -132,6 +133,27 @@ Node, npm, PostgreSQL (or use NeonDB).
 3. **Monitor Logs**
 
    The server console will display logs related to scraping activities and WebSocket communications.
+
+4. Alternatively, you can use console.log() to get the number of stories published in the last 5 mins.
+
+   ```javascript
+   const ws = new WebSocket("ws://localhost:3000");
+   ws.onopen = () => {
+     console.log("Connected to WebSocket server");
+   };
+
+   ws.onmessage = (event) => {
+     console.log("Received:", event.data);
+   };
+
+   ws.onerror = (error) => {
+     console.error("WebSocket error:", error);
+   };
+
+   ws.onclose = () => {
+     console.log("WebSocket connection closed");
+   };
+   ```
 
 ## Technology Stack
 
