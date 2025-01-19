@@ -16,6 +16,10 @@
 
 Hacker News Scraper is a Node.js application that scrapes the latest stories from [Hacker News](https://news.ycombinator.com/newest), stores them in a PostgreSQL database (NeonDB), and provides a real-time dashboard displaying the number of recent stories and their details via a web interface. The application utilizes WebSockets to facilitate real-time updates without the need for page refreshes.
 
+## Note
+
+The scraper is currently set to scrape the first 10 stories from the Hacker News website. This can be changed by modifying the `storyIds.slice(0, 10)` line in the `server/utils/grabUtil.js` file.
+
 ## Features
 
 - **Real-time Scraping:** Fetches new stories from Hacker News at regular intervals.
@@ -100,28 +104,26 @@ Node, npm, PostgreSQL (or use NeonDB).
    Create a `.env` file in the project root with the following content:
 
    ```plaintext
-   DATABASE_URL=postgresql://your_user:your_password@your_neondb_host:5432/your_dbname
-   PORT=3000
+   DATABASE_URL=
+   PORT=
    ```
 
-   - **DATABASE_URL**: Your PostgreSQL connection string. Replace the placeholders with your actual credentials.
+   - **DATABASE_URL**: Your PostgreSQL connection string.
    - **PORT**: Port on which the server will run (default is `3000`).
 
 ## Usage
 
 1. **Start the Server**
 
-   - For development (with automatic restarts on code changes):
+   ```bash
+   npm run dev
+   ```
 
-     ```bash
-     npm run dev
-     ```
+   or
 
-   - For production:
-
-     ```bash
-     npm start
-     ```
+   ```bash
+   npm start
+   ```
 
 2. **Access the Dashboard**
 
@@ -134,18 +136,18 @@ Node, npm, PostgreSQL (or use NeonDB).
 ## Technology Stack
 
 - **Backend:**
-  - [Node.js](https://nodejs.org/)
-  - [Express](https://expressjs.com/)
-  - [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
-  - [node-fetch](https://github.com/node-fetch/node-fetch)
-  - [pg](https://node-postgres.com/)
+  - Node.js
+  - Express
+  - WebSockets
+  - node-fetch
+  - pg
 - **Frontend:**
   - HTML, CSS, JavaScript
 - **Database:**
-  - [PostgreSQL](https://www.postgresql.org/) (NeonDB)
+  - PostgreSQL (NeonDB)
 - **Utilities:**
-  - [dotenv](https://github.com/motdotla/dotenv)
-  - [nodemon](https://nodemon.io/)
+  - dotenv
+  - nodemon
 
 ## Acknowledgements
 
